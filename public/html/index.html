@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Magnetic HTML</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Magnetic HTML tags for your fridge. Drag and drop to create your own webpage!" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <img style="position:absolute; display:block; left:0; top:0; width:1px; height:1px; overflow:hidden; opacity:0.01;" src="img/thumb.jpg" alt="thumbnail" />
+    <div id="createWrap">
+      <header>
+        <div id="title">
+          <h1>Magnetic HTML&trade;</h1>
+          <p id="message">Click and drag. Double-click to type.</p>
+        </div>
+        <nav>
+          <div>
+            <input id="sitename" type="text" autocomplete="off" placeholder="Pick a name for your site" />
+            <input id="password" type="text" autocomplete="off" placeholder="Pick or enter a password" />
+          </div>
+          <a id="saveButton" class="save" title="Save your page!"></a>
+          <a href="./index.html" target="_top" class="home" title="Main Magnetic HTML page"></a>
+          <a href="./index.html?url=blank" target="_top" class="blank" title="New blank page"></a>
+          <a href="#" class="view" id="popout" target="_blank" title="View the current page by itself"></a>
+          <a href="mailto:robin@magnetichtml.com" class="email" title="Contact robin@magnetichtml.com"></a>
+          <a href="http://amzn.to/1G66iB5" target="_blank" class="amazon" title="Get real-life Magnetic HTML tiles on Amazon"></a>
+        </nav>
+      </header>
+      <div id="create" class="draggable tiles"></div>
+    </div>
+    <div id="viewWrap">
+      <div id="view">
+        <iframe id="frame"></iframe>
+      </div>
+    </div>
+  </body>
+</html>

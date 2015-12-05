@@ -1,0 +1,4 @@
+public/page/*
+!belair.html
+!blank.html
+!default.html
