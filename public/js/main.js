@@ -32,9 +32,9 @@ window.onload = function(){
   }());
 
   (function getSource(){
-    frameSource = "/page/" + (location.pathname.substring(1) || "default") + ".html";
+    frameSource = (location.pathname.substring(1) || "default") + ".html";
     h.el("sitename").value = "default";
-    h.el("popout").href = "/page" + frameSource + ".html";
+    h.el("popout").href = frameSource + ".html";
   }());
 
   (function loadTiles(){

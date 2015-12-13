@@ -1,3 +1,5 @@
+"use strict";
+
 var h = (function(){
   var h = {};
   h.el = function(id){

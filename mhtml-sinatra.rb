@@ -2,12 +2,19 @@ require "sinatra"
 require "sinatra/reloader"
 require "httparty"
 
-get "/:page?.?:format?" do
+get "/:page.html" do
   filepath = path_to params[:page]
-  if !params[:page]
-    File.read path_to "index"
-  elsif filepath && params[:page] != "index"
+  if !filepath
+    redirect "/"
+  else
     File.read filepath
+  end
+end
+
+get "/:page?" do
+  filepath = path_to params[:page]
+  if !params[:page] || (filepath && params[:page] != "index")
+    File.read path_to "index"
   else
     redirect "/"
   end
@@ -20,7 +27,7 @@ end
 private
 def path_to filename
   return nil if !filename
-  path = "public/page/#{filename}.html"
+  path = "page/#{filename}.html"
   return false if !File.exists?(path)
   return path
 end

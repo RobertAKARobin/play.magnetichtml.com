@@ -1,3 +1,5 @@
+"use strict";
+
 function Draggable(element){
   var instance = this;
   instance.isDragging = false;

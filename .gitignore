@@ -1,5 +1,5 @@
-public/page/*
-!public/page/index.html
-!public/page/default.html
-!public/page/blank.html
-!public/page/belair.html
+page/*
+!page/index.html
+!page/default.html
+!page/blank.html
+!page/belair.html

@@ -1,3 +1,5 @@
+"use strict";
+
 function TileFactory(parent){
   var factory = this;
   factory.tiles = [];
