@@ -7,18 +7,6 @@ window.onload = function(){
   var frame = h.el("frame");
   var frameSource;
   var isLocal;
-  var baseDir;
-  var apiDir;
-
-  (function isLocalHost(){
-    if(location.host == "localhost"){
-      baseDir = "http://localhost/magnetic/";
-      apiDir = "http://localhost/magnetic/api/";
-    }else{
-      baseDir = "http://magnetichtml.com/";
-      apiDir = "http://localhost:4567/";
-    }
-  }());
 
   (function createTileFactory(){
     tileFactory = new TileFactory(h.el("create"));
@@ -32,8 +20,8 @@ window.onload = function(){
   }());
 
   (function getSource(){
-    frameSource = (location.pathname.substring(1) || "default") + ".html";
-    h.el("sitename").value = "default";
+    frameSource = (location.pathname.substring(1) || "default");
+    h.el("sitename").value = (frameSource == "default" ? "" : frameSource);
     h.el("popout").href = frameSource + ".html";
   }());
 
@@ -41,7 +29,7 @@ window.onload = function(){
     var offsetTop = 0;
     var tile;
     var lineLength;
-    h.ajax("GET", frameSource, {}, function(html){
+    h.ajax("GET", frameSource + ".html", {}, function(html){
       var lines = TileFactory.splitHTML(html);
       h.each(lines, function(line, l){
         h.each(line.tiles, function(value, t){
@@ -67,36 +55,33 @@ window.onload = function(){
       updateMessage("Saving...");
       var postData = {
         sitehtml: tileFactory.getTilesText(),
-        sitename: el("sitename").value,
-        password: el("password").value
+        sitename: h.el("sitename").value,
+        password: h.el("password").value
       }
-      ajax("POST", apiDir + "save.php", postData, function(response){
-        response = JSON.parse(response);
-        if(response.fail){
-          updateMessage(response.fail);
-        }else if(response.success == "updated"){
-          updateMessage("Updated!");
-        }else{
-          window.location.replace(location.origin + location.pathname + "?url=" + response.success);
-        }
-      });
+      h.ajax("POST", "/", postData, processPost);
     });
 
+    function processPost(response){
+      response = JSON.parse(response);
+      if(response.success){
+        updateMessage("Saved! :)");
+        if(response.action == "create"){
+          window.location.replace(location.origin + "/" + response.base);
+        }
+      }else{
+        updateMessage("Oops! Did you enter the right site name and password?");
+      }
+    }
+
     function updateMessage(content){
-      var message = el("message");
+      var message = h.el("message");
       message.textContent = content;
-      addClass(message, "err");
+      h.addClass(message, "err");
       setTimeout(function(){
-        removeClass(message, "err");
+        h.removeClass(message, "err");
       }, 2000);
     }
   }());
-
-  // (function getCounter(){
-  //   ajax("GET", apiDir + "counter.txt", {}, function(count){
-  //     el("sitename").placeholder = "Give site #" + count + " a name";
-  //   });
-  // }());
 
   function refreshFrame(){
     var urlRegex = /(?:href=\s*"|src=\s*"|url\()(?!http)([^ "]+)/g;
@@ -106,7 +91,6 @@ window.onload = function(){
     text = text.replace(urlRegex, function(match, filename){
       var rel = match.substring(0, match.indexOf(filename));
       var output = rel.trim();
-      output += apiDir;
       return output += filename.trim();
     });
     frame.srcdoc = text;

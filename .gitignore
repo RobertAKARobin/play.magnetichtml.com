@@ -3,3 +3,4 @@ page/*
 !page/default.html
 !page/blank.html
 !page/belair.html
+env.*

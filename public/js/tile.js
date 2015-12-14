@@ -87,12 +87,15 @@ TileFactory.prototype = {
     var lines = {};
     var output = [];
     h.each(tiles, function(tile){
-      var indent;
-      if(!lines[tile.offsetTop]){
+      var indent, lineNum = tile.offsetTop / factory.letter.height;
+      if(!lines[lineNum]){
+        lines[lineNum] = []
         indent = Math.round(tile.offsetLeft / factory.letter.width);
-        lines[tile.offsetTop] = [ [Array(indent + 1).join(" ")] ];
+        if(indent > 0){
+          lines[lineNum].push(Array(indent).join(" "));
+        }
       }
-      lines[tile.offsetTop].push(tile.value);
+      lines[lineNum].push(tile.value);
     });
     h.each(lines, function(line){
       output.push(line.join(" "));
@@ -105,6 +108,7 @@ TileFactory.prototype = {
         return result;
       });
     }());
+    console.log(output)
     return output;
   }
 }
