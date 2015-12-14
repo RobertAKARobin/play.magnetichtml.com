@@ -4,3 +4,9 @@ page/*
 !page/blank.html
 !page/belair.html
 env.*
+shared/log/*
+shared/pids/*
+shared/sockets/*
+!shared/log/.keep
+!shared/pids/.keep
+!shared/sockets/.keep
