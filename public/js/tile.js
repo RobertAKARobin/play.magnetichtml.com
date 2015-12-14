@@ -82,47 +82,35 @@ TileFactory.prototype = {
     return tiles;
   },
   getTilesText: function(){
-    var factory = this;
+    var factory = this, lines = {}, output = [];
     var tiles = factory.getTilesSortedByLocation();
-    var lines = {};
-    var output = [];
     h.each(tiles, function(tile){
       var indent, lineNum = tile.offsetTop / factory.letter.height;
       if(!lines[lineNum]){
         lines[lineNum] = []
         indent = Math.round(tile.offsetLeft / factory.letter.width);
-        if(indent > 0){
-          lines[lineNum].push(Array(indent).join(" "));
-        }
+        if(indent > 0) lines[lineNum].push(Array(indent).join(" "));
       }
       lines[lineNum].push(tile.value);
     });
     h.each(lines, function(line){
       output.push(line.join(" "));
     });
-    output = output.join("\n");
-    (function stripUnnecessarySpaces(){
-      var unnecessarySpaces = /(> (?=<))|(href=\s)|(src=\s)|( (?=&))/g;
-      output = output.replace(unnecessarySpaces, function(match){
-        var result = match.substring(0, match.length - 1);
-        return result;
-      });
-    }());
-    console.log(output)
+    output = h.stripUnnecessarySpaces(output.join("\n"));
     return output;
   }
 }
 
 function Tile(factory){
-  var tile = this;
+  var tile = this, el;
   tile.factory = factory;
-  tile.element = document.createElement("INPUT");
-  tile.element.addEventListener("mousedown", tile.toggleFocus.bind(tile));
-  tile.element.addEventListener("touchstart", tile.toggleFocus.bind(tile));
-  tile.element.addEventListener("keydown", tile.onKeyDown.bind(tile));
-  tile.element.addEventListener("keypress", tile.onKeyPress.bind(tile));
-  tile.element.addEventListener("keyup", tile.onKeyUp.bind(tile));
-  tile.element.addEventListener("change", function(){
+  tile.element = el = document.createElement("INPUT");
+  el.addEventListener("mousedown", tile.toggleFocus.bind(tile));
+  el.addEventListener("touchstart", tile.toggleFocus.bind(tile));
+  el.addEventListener("keydown", tile.onKeyDown.bind(tile));
+  el.addEventListener("keypress", tile.onKeyPress.bind(tile));
+  el.addEventListener("keyup", tile.onKeyUp.bind(tile));
+  el.addEventListener("change", function(){
     tile.checkIfHTML();
     tile.factory.element.dispatchEvent(Tile.events.update);
   });

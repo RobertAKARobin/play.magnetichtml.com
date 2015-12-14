@@ -55,5 +55,13 @@ var h = (function(){
     });
     return output.join("&");
   }
+  h.stripUnnecessarySpaces = function(input){
+    var unnecessarySpaces = /(> (?=<))|(href=\s)|(src=\s)|( (?=&))/g;
+    input = input.replace(unnecessarySpaces, function(match){
+      var result = match.substring(0, match.length - 1);
+      return result;
+    });
+    return input;
+  }
   return h;
 }());

@@ -26,27 +26,29 @@ window.onload = function(){
   }());
 
   (function loadTiles(){
-    var offsetTop = 0;
-    var tile;
-    var lineLength;
-    h.ajax("GET", frameSource + ".html", {}, function(html){
-      var lines = TileFactory.splitHTML(html);
-      h.each(lines, function(line, l){
+    var offsetTop = 0, tile;
+    h.ajax("GET", frameSource + ".html", {}, processAjax);
+
+    function processAjax(html){
+      h.each(TileFactory.splitHTML(html), function(line){
         h.each(line.tiles, function(value, t){
-          var newTile = tileFactory.create(value);
-          if(t === 0){
-            newTile.setPosition("left", line.left * tileFactory.letter.width);
-            newTile.setPosition("top", offsetTop);
-          }else newTile.appendTo(tile);
-          if(newTile.element.offsetTop > offsetTop){
-            offsetTop = newTile.element.offsetTop;
-          }
-          tile = newTile;
+          tile = putTileInLine(tileFactory.create(value), line, t);
         });
-        offsetTop = offsetTop + tileFactory.letter.height;
+        offsetTop += tileFactory.letter.height;
       });
       refreshFrame();
-    });
+    }
+
+    function putTileInLine(newTile, line, tileNum){
+      if(tileNum === 0){
+        newTile.setPosition("left", line.left * tileFactory.letter.width);
+        newTile.setPosition("top", offsetTop);
+      }else newTile.appendTo(tile);
+      if(newTile.element.offsetTop > offsetTop){
+        offsetTop = newTile.element.offsetTop;
+      }
+      return newTile;
+    }
   }());
 
   (function setUpSaveButton(){
