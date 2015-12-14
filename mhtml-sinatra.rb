@@ -30,8 +30,8 @@ class MHTML < Sinatra::Base
     pass = totally_secure_password_encode params[:password]
     base = params[:sitename].gsub(/[^a-zA-Z0-9_-]/, "")
     path = current_path_for base
-    completed = "create" if (!path && pass )
-    completed = "update" if (path && pass == password_from(path))
+    completed = "create" if (!path && pass)
+    completed = "update" if (path && pass && pass == password_from(path))
     return (json success: false) unless completed
     File.open("page/#{base}.#{pass}.html", "w"){|f| f.write html}
     return (json success: true, action: completed, base: base)
