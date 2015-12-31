@@ -122,6 +122,9 @@ a:hover{
 strong{
   font-weight:bold;
 }
+em{
+  font-style:italic;
+}
 
 .photoSwap{
   position:relative;

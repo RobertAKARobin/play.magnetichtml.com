@@ -65,9 +65,10 @@ window.onload = function(){
 
     function processPost(response){
       response = JSON.parse(response);
+      console.log(response);
       if(response.success){
         updateMessage("Saved! :)");
-        if(response.action == "create"){
+        if(response.action == "create" || frameSource !== response.base){
           window.location.replace(location.origin + "/" + response.base);
         }
       }else{
