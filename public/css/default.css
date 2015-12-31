@@ -47,18 +47,22 @@ a, button, label{
 
 
 .container{
-  max-width:500px;
+  max-width:600px;
   padding:20px 40px;
 }
 h1,h2,h3,h4,h5,h6,
 button, .button, .buttons>*{
   font-family:Verdana, sans-serif;
 }
-h1{ font-size:48px; }
-h2{ font-size:24px; }
+h1{
+  font-size:36px;
+}
+h2{
+  font-size:24px;
+}
 h1,h2,h3,h4,h5,h6{
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top:10px;
+  margin-bottom:10px;
 }
 img{
   margin:10px 0;
@@ -101,7 +105,7 @@ img{
 }
 header{
   background-color:#fff;
-  padding:10px 10px;
+  padding:5px;
   color:#666;
   text-align:center;
 }
