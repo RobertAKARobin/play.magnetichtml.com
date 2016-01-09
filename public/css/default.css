@@ -27,7 +27,7 @@ html{
 }
 body{
   max-width:600px;
-  padding:10px 40px;
+  padding:10px 40px 40px 40px;
   font-family:"Andale Mono", monospace;
   font-size:18px;
   line-height:36px;
@@ -49,7 +49,7 @@ h1{
 h1,h2,h3,h4,h5,h6,
 button, .button,
 p, img, dl{
-  margin:10px auto 5px auto;
+  margin:50px auto 5px auto;
 }
 button, .button,
 img, .img{
@@ -72,7 +72,6 @@ button, .button{
   padding:10px 20px;
   text-decoration:none;
   letter-spacing:2px;
-  font-weight:bold;
   border:1px solid #c8c;
   background-color:#c8c;
   color:#fff;
@@ -99,24 +98,26 @@ em{
 
 .img{
   background-position:center center;
-  overflow:hidden;
 }
 .img a{
   display:block;
   height:100px;
   text-decoration:none;
-  font-weight:bold;
-  color:inherit;
   background-color:rgba(255,255,255,0.8);
-  transition:opacity 0.2s;
+  transition:background-color 0.2s, box-shadow 0.2s, color 0.2s;
+  -webkit-transition:background-color 0.2s, box-shadow 0.2s, color 0.2s;
 }
 .img.off a:hover,
 .img a{
-  opacity:0;
+  background-color:rgba(255,255,255,0);
+  color:rgba(50,50,50,0);
+  box-shadow:0px 0px 20px 0px #bbb;
 }
 .img.off a,
 .img a:hover{
-  opacity:1;
+  background-color:rgba(255,255,255,0.8);
+  color:rgba(50,50,50,1);
+  box-shadow:0px 0px 20px 0px #ddd;
 }
 .img.scatter{
   background-image:url("/img/scatter.jpg");
