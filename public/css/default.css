@@ -84,6 +84,7 @@ button:hover, .button:hover{
 
 a{
   text-decoration:underline;
+  color:#808;
 }
 a:hover{
   color:#cac;
