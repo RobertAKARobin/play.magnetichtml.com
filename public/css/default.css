@@ -63,7 +63,6 @@ kbd{
   display:inline-block;
   width:50%;
   text-align:right;
-  font-weight:bold;
   color:#808;
 }
 
@@ -103,21 +102,20 @@ em{
   display:block;
   height:100px;
   text-decoration:none;
+  color:#808;
   background-color:rgba(255,255,255,0.8);
-  transition:background-color 0.2s, box-shadow 0.2s, color 0.2s;
-  -webkit-transition:background-color 0.2s, box-shadow 0.2s, color 0.2s;
+  transition:background-color 0.2s, box-shadow 0.2s;
+  -webkit-transition:background-color 0.2s, box-shadow 0.2s;
 }
 .img.off a:hover,
 .img a{
   background-color:rgba(255,255,255,0);
-  color:rgba(50,50,50,0);
   box-shadow:0px 0px 20px 0px #bbb;
 }
 .img.off a,
 .img a:hover{
   background-color:rgba(255,255,255,0.8);
-  color:rgba(50,50,50,1);
-  box-shadow:0px 0px 20px 0px #ddd;
+  box-shadow:0px 0px 20px 0px #fff;
 }
 .img.scatter{
   background-image:url("/img/scatter.jpg");
