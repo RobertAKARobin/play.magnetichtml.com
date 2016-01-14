@@ -6,7 +6,8 @@ var tileFactory;
 window.onload = function(){
   var frame = h.el("frame");
   var frameSource;
-  var isLocal;
+  var head = "", body = "", foot = "";
+  var headDelim = "<!--body-->", footDelim = "<!--/body-->";
 
   (function createTileFactory(){
     tileFactory = new TileFactory(h.el("create"));
@@ -26,10 +27,24 @@ window.onload = function(){
   }());
 
   (function loadTiles(){
-    var offsetTop = 0, tile;
-    h.ajax("GET", frameSource + ".html", {}, processAjax);
+    var offsetTop = 0, tile
+    h.ajax("GET", frameSource + ".html", {}, function(html){
+      html = splitAlongBody(html);
+      splitToTiles(html);
+    });
 
-    function processAjax(html){
+    function splitAlongBody(html){
+      var split;
+      if(!new RegExp(headDelim).test(html)) return html;
+      split = html.split(headDelim);
+      head = split[0];
+      body = split[1].split(footDelim);
+      foot = body[1];
+      body = body[0];
+      return body;
+    }
+
+    function splitToTiles(html){
       h.each(TileFactory.splitHTML(html), function(line){
         h.each(line.tiles, function(value, t){
           tile = putTileInLine(tileFactory.create(value), line, t);
@@ -54,9 +69,11 @@ window.onload = function(){
   (function setUpSaveButton(){
     var saveButton = h.el("saveButton");
     saveButton.addEventListener("click", function(){
+      var body = tileFactory.getTilesText();
       updateMessage("Saving...");
+      if(head) body = [head, headDelim, body, footDelim, foot];
       var postData = {
-        sitehtml: tileFactory.getTilesText(),
+        sitehtml: body.join(""),
         sitename: h.el("sitename").value,
         password: h.el("password").value
       }
@@ -89,6 +106,8 @@ window.onload = function(){
   function refreshFrame(){
     var urlRegex = /(?:href=\s*"|src=\s*"|url\()(?!http)([^ "]+)/g;
     var text = tileFactory.getTilesText();
+    var whole = [head, text, foot];
+    text = whole.join("");
     text = text.replace(/[\n\r]/g, " ");
     text = text.replace(/\s{2,}/g, " ");
     text = text.replace(urlRegex, function(match, filename){
