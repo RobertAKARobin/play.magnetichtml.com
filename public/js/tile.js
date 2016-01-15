@@ -48,7 +48,7 @@ TileFactory.prototype = {
     var tile = new Tile(factory);
     factory.element.appendChild(tile.element);
     tile.element.focus();
-    if(content) tile.update(content);
+    tile.update(content || "");
     factory.latest = tile;
     factory.element.dispatchEvent(Tile.events.create);
     return tile;
@@ -104,7 +104,7 @@ TileFactory.prototype = {
 function Tile(factory){
   var tile = this, el;
   tile.factory = factory;
-  tile.element = el = document.createElement("INPUT");
+  tile.element = el = document.createElement("TEXTAREA");
   el.addEventListener("mousedown", tile.toggleFocus.bind(tile));
   el.addEventListener("touchstart", tile.toggleFocus.bind(tile));
   el.addEventListener("keydown", tile.onKeyDown.bind(tile));

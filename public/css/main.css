@@ -34,6 +34,7 @@ div{
 }
 input, textarea{
   outline:none;
+  resize:none;
 }
 a, button, label{
   cursor:pointer;
