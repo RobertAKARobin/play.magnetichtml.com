@@ -19,20 +19,17 @@
   outline-offset:0;
 }
 html{
-  background-color:#666;
-  background-image:url("/img/slate.png");
-}
-body,html{
-  position:relative;
-  font-family: "Andale Mono", monospace;
+  font-size:14px;
+  background-color:#fff;
 }
 body{
-  height:100vh;
+  font-family: "Andale Mono", monospace;
+  font-size:0;
 }
 div{
   position:relative;
 }
-input, textarea{
+textarea{
   outline:none;
   resize:none;
 }
@@ -42,59 +39,33 @@ a, button, label{
 button, .button{
   text-align:center;
 }
-html, body{
-  font-size:14px;
-}
-body{
-  height:100vh;
-  overflow-y:hidden;
-}
-body>div{
-  height:100vh;
-}
-body>:nth-of-type(1){
-  overflow-y:scroll;
-}
-body>:nth-of-type(2){
+header{
+  font-size:1rem;
 }
 #create{
-  min-height:100vh;
-}
-#viewWrap{
-  box-shadow:0px 0px 50px 0px black;
-}
-#frame{
-  position:relative;
-  display:block;
-  height:100vh;
-  background-color:white;
+  font-size:1rem;
 }
 
 .tiles>*{
-  color:#222;
+  color:#444;
   background-color:rgba(255, 255, 255, 0.9);
   height:36px;
-  outline:1px solid #ddd;
   display:inline-block;
   line-height:36px;
+  background-color:#f6f6f6;
+  box-shadow:1px 1px 3px 0px #aaa;
 }
-#create input{
-  position:absolute;
-  padding:0;
-  min-width:1px;
-  width:15px;
+#create textarea:hover{
+  background-color:#fff;
+  box-shadow:1px 1px 3px 0px #666;
 }
+#create textarea:focus{
+  background-color:#fff;
+  box-shadow:0px 0px 4px 0px #00f;
+}
+
 .draggable>*{
   cursor:move;
-}
-#create input:hover,
-.tiles>a[href]:hover,
-.tiles>:focus,
-.tile:focus{
-  background-color:#fff;
-}
-#create.tiles>:active{
-  box-shadow:2px 2px 5px 0px #000;
 }
 .htmlTag{
   color:#808;
@@ -106,10 +77,13 @@ body>:nth-of-type(2){
 header{
   text-align:center;
   line-height:18px;
-  background-color:rgba(255,255,255,0.2);
+  background-color:rgba(0,0,0,0.5);
 }
 h1{
   font-weight:bold;
+}
+h1 a{
+  display:block;
 }
 #message{
   transition:0.2s color;
@@ -117,6 +91,7 @@ h1{
 .err{
   color:#fff;
 }
+
 nav{
   font-size:0;
 }
@@ -135,9 +110,10 @@ nav input{
   line-height:18px;
   font-size:1rem;
   box-sizing:border-box;
+  border-bottom:1px dashed #666;
 }
 nav input:focus,
-nav a:hover{
+header a:hover{
   background-color:rgba(0,0,0,0.1);
 }
 nav a{
@@ -153,9 +129,6 @@ nav a:before{
   background-repeat:no-repeat;
 }
 
-.view:before{
-  background-position:center 0px;
-}
 .home:before{
   background-position:center -20px;
 }
@@ -175,16 +148,15 @@ nav a:before{
 #create{
   z-index:1;
 }
-#view{
-  z-index:2;
-}
 #main-nav{
   z-index:3;
 }
-#create .tiles>*{
+#create textarea{
   z-index:4;
 }
-#create .tiles>:active{
+#create textarea:focus
+#create textarea:active,
+#create textarea:hover{
   z-index:5;
 }
 #frame{
@@ -194,45 +166,37 @@ nav a:before{
   z-index:7;
 }
 
-
-body{
-  display:flex;
-  display:-webkit-flex;
-  flex-direction:row;
-  -webkit-flex-direction:row;
-  align-content:stretch;
-  -webkit-align-content:stretch;
+#createWrap,
+#frame{
+  background-color:#fff;
 }
-body>div{
-  flex-basis:320px;
-  -webkit-flex-basis:320px;
+#frame{
+  display:block;
 }
 #createWrap{
+  background-image:url("/img/handmadepaper.png");
   direction:rtl;
-  overflow-x:hidden;
-  flex-grow:1;
-  -webkit-flex-grow:1;
-  flex-shrink:0;
-  -webkit-flex-shrink:0;
 }
-#createWrap>*{
+#create, header{
   direction:ltr;
 }
-#viewWrap{
-  flex-grow:2;
-  -webkit-flex-grow:2;
-  flex-shrink:0;
-  -webkit-flex-shrink:0;
+
+body{
+  position:relative;
+  width:100vw;
+  min-width:600px;
 }
-#create, #frame{
-  width:100%;
+#createWrap,
+#frame{
+  width:50%;
+  height:100vh;
 }
-@media (max-width:420px){
-  body{
-    width:200vw;
-  }
-  body>div{
-    flex-basis:100vw;
-    -webkit-flex-basis:100vw;
-  }
+#createWrap{
+  overflow-x:hidden;
+}
+#frame{
+  position:absolute;
+  top:0;
+  left:50%;
+  box-shadow:0px 0px 100px 0px #333;
 }
