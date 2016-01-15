@@ -71,9 +71,9 @@ window.onload = function(){
     saveButton.addEventListener("click", function(){
       var body = tileFactory.getTilesText();
       updateMessage("Saving...");
-      if(head) body = [head, headDelim, body, footDelim, foot];
+      if(head) body = [head, headDelim, body, footDelim, foot].join("");
       var postData = {
-        sitehtml: body.join(""),
+        sitehtml: body,
         sitename: h.el("sitename").value,
         password: h.el("password").value
       }
