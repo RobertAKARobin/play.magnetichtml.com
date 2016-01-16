@@ -3,6 +3,8 @@ page/*
 !page/default.html
 !page/blank.html
 !page/belair.html
+!page/css_practice_start.html
+!page/css_practice_voila.html
 env.*
 shared/log/*
 shared/pids/*

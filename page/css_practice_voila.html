@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> My Webpage </title>
+    <script src="../js/add_class_to_tag.js"></script>
+    <style>
+*{
+  margin:0;
+  padding:0;
+  border:0;
+  list-style-type:none;
+}
+h1,strong{
+  font-weight:inherit;
+}
+em{
+  font-style:inherit;
+}
+img{
+  display:block;
+}
+/*<!--body-->******
+******/
+.page{
+  background-color:mintcream;
+  color:darkslategrey;
+  font-family:sans-serif;
+  font-size:14px;
+  line-height:30px;
+  padding-left:20px;
+  padding-right:20px;
+  background-image:url(img/pixels.png);
+}
+.headline{
+  font-family:cursive;
+  font-size:54px;
+  padding-top:40px;
+  padding-bottom:40px;
+  text-align:center;
+  color:powderblue;
+  font-weight:bold;
+}
+.paragraph{
+  text-indent:20px;
+}
+.paragraph,.list{
+  padding-top:20px;
+  padding-bottom:20px;
+  border-style:dashed;
+  border-color:powderblue;
+  border-bottom-width:1px;
+}
+.list-item:before{
+  content:"__";
+}
+.list-item:after{
+  content:"...";
+}
+.important{
+  font-weight:bold;
+}
+.emphasis{
+  font-style:italic;
+  text-decoration:underline;
+}
+.link{
+  color:purple;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.link:hover{
+  color:rosybrown;
+}
+.image{
+  width:300px;
+  height:425px;
+  margin-left:auto;
+  margin-right:auto;
+  transform:rotate(5deg);
+  border-color:darkslategrey;
+  border-width:5px;
+  border-style:solid;
+  border-radius:20px;
+}
+/******<!--/body-->*/
+  </style>
+  </head>
+  <body>
+    <h1>CSS is fun!</h1>
+    <p>This page has all the HTML and CSS needed to make it look like <a href="img/css_practice_end.png" target="_blank">this</a>. However, the CSS is all <strong>out of order</strong>.</p>
+    <ol>
+      <li>Click and drag the tiles on the left to make this page match the picture</li>
+      <li>You won't need to create, edit, or delete any tiles</li>
+      <li>You <em>will</em> need to use <em>all</em> of the tiles</li>
+    </ol>
+    <p>Not sure what goes where? <strong>That's the point!</strong> Every color, font, and width is specified in one of the CSS tiles on the left. To find the tile that specifies the background color, look for something saying <em>background color</em>!</p>
+    <p>Here's a picture of <a href="https://en.wikipedia.org/wiki/Nicolas_Cage">Nic Cage</a> for good measure.</p>
+    <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Nicolas_Cage_Deauville_2013.jpg" at="Nic Cage" />
+  </body>
+</html>
