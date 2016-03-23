@@ -6,6 +6,7 @@ require "digest"
 require "./env.rb" if File.exists?("env.rb")
 
 class MHTML < Sinatra::Base
+  set :public_folder, "static"
 
   get "/:page.html" do
     filepath = current_path_for params[:page]
