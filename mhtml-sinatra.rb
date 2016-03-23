@@ -1,12 +1,13 @@
-require "sinatra"
 require "sinatra/json"
 require "sinatra/reloader" if development?
-require "httparty"
 require "digest"
-require "./env.rb" if File.exists?("env.rb")
+require_relative "env" if File.exists?("env.rb")
 
 class MHTML < Sinatra::Base
   set :public_folder, "static"
+  configure :development do
+    register Sinatra::Reloader
+  end
 
   get "/:page.html" do
     filepath = current_path_for params[:page]

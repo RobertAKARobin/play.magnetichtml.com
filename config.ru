@@ -1,4 +1,4 @@
 require "sinatra"
-require "./mhtml-sinatra"
+require_relative "mhtml-sinatra"
 
 run MHTML
