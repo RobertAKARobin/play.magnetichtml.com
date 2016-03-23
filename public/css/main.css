@@ -47,37 +47,36 @@ header{
 }
 
 .tiles>*{
-  color:#444;
-  background-color:rgba(255, 255, 255, 0.9);
+  color:#cfc;
   height:36px;
   display:inline-block;
   line-height:36px;
-  background-color:#f6f6f6;
-  box-shadow:1px 1px 3px 0px #aaa;
+  background-color:#444;
+  box-shadow:1px 1px 3px 0px #000;
 }
 #create textarea:hover{
-  background-color:#fff;
-  box-shadow:1px 1px 3px 0px #666;
+  background-color:#555;
 }
 #create textarea:focus{
-  background-color:#fff;
-  box-shadow:0px 0px 4px 0px #00f;
+  background-color:#555;
+  box-shadow:0px 0px 4px 0px #0f0;
 }
 
 .draggable>*{
   cursor:move;
 }
 .htmlTag{
-  color:#808;
+  color:#c6c;
 }
 .specialChar{
-  color:#d60;
+  color:#960;
 }
 
 header{
   text-align:center;
   line-height:18px;
-  background-color:rgba(0,0,50,0.5);
+  background-color:#333;
+  color:#999;
 }
 h1{
   font-weight:bold;
@@ -110,11 +109,15 @@ nav input{
   line-height:18px;
   font-size:1rem;
   box-sizing:border-box;
-  border-bottom:1px dashed #666;
+  border-bottom:1px dashed #444;
 }
+nav input::placeholder{               color:#666; }
+nav input::-ms-input-placeholder{     color:#666; }
+nav input:-ms-input-placeholder{      color:#666; }
+nav input::-webkit-input-placeholder{ color:#666; }
 nav input:focus,
 header a:hover{
-  background-color:rgba(0,0,0,0.1);
+  background-color:#555;
 }
 nav a{
   height:36px;
@@ -174,7 +177,7 @@ nav a:before{
   display:block;
 }
 #createWrap{
-  background-image:url("/img/handmadepaper.png");
+  background-color:#222;
   direction:rtl;
 }
 #create, header{
@@ -198,5 +201,4 @@ body{
   position:absolute;
   top:0;
   left:50%;
-  box-shadow:0px 0px 100px 0px #333;
 }

@@ -63,8 +63,10 @@ Draggable.prototype = {
     var instance = this;
     var element = instance.element;
     var offsetParent = element.offsetParent;
-    var overlapX = (element.offsetWidth / 2);
-    var overlapY = (element.offsetHeight / 2);
+    // var overlapX = (element.offsetWidth / 2);
+    // var overlapY = (element.offsetHeight / 2);
+    var overlapX = 0;
+    var overlapY = 0;
     instance.startingPosition = {
       top: element.offsetTop,
       left: element.offsetLeft

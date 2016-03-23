@@ -105,6 +105,7 @@ function Tile(factory){
   var tile = this, el;
   tile.factory = factory;
   tile.element = el = document.createElement("TEXTAREA");
+  el.setAttribute("spellcheck", "false");
   el.addEventListener("mousedown", tile.toggleFocus.bind(tile));
   el.addEventListener("touchstart", tile.toggleFocus.bind(tile));
   el.addEventListener("keydown", tile.onKeyDown.bind(tile));
