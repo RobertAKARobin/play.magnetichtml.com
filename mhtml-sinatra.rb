@@ -21,10 +21,14 @@ class MHTML < Sinatra::Base
   get "/:page?" do
     filepath = current_path_for params[:page]
     if !params[:page] || (filepath && params[:page] != "index")
-      File.read current_path_for "index"
+      File.read("static/html/index.html")
     else
       redirect "/"
     end
+  end
+
+  get "/go/paypal" do
+    redirect "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=534QLZPXCHKLL"
   end
 
   post "/" do
